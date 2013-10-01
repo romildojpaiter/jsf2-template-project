@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">jsr-311-androidclient</string>
+    <string name="app_name">Cliente REST</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="endereco_servidor">Endereço Servidor</string>
+    <string name="btEdit">Editar</string>
+    <string name="btErase">Apagar</string>
+    <string name="btSave">Salvar</string>
+    <string name="textNota">Nota:</string>
+    <string name="textNome">Nome:</string>
+    <string name="defaultServer">http://192.168.0.191:8080/REST/alunos/</string>
+    <string name="main_title">Cliente REST</string>
+    <string name="quit">Sair?</string>
+    <string name="really_quit">Realmente sair?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="list_label">Listar alunos</string>
+    <string name="add_label">Adicionar Aluno</string>
+    <string name="cancel">Cancelar</string>
+    <string name="student">Aluno</string>
+    <string name="students">Alunos</string>
 
 </resources>

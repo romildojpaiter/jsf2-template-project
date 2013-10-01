@@ -26,63 +26,64 @@ public class RestClient {
 
 	private static final int TIMEOUT_CONNECTION = 3000;
 	private static final int TIMEOUT_SOCKET = 5000;
-	
+
 	private String server;
 	private ObjectMapper objectMapper;
-	
-	
-	
+
 	public RestClient(String server) {
 		this.server = server;
 		objectMapper = new ObjectMapper();
 	}
 
-	public String getOrDeleteBaseURI(String uriPath, boolean get) throws IOException{
-		
+	public String getOrDeleteBaseURI(String uriPath, boolean get)
+			throws IOException {
+
 		String result = "";
-		
-		try{
+
+		try {
 			HttpParams httpParameters = new BasicHttpParams();
-			HttpConnectionParams.setConnectionTimeout(httpParameters, TIMEOUT_CONNECTION);
-			
+			HttpConnectionParams.setConnectionTimeout(httpParameters,
+					TIMEOUT_CONNECTION);
+
 			HttpConnectionParams.setSoTimeout(httpParameters, TIMEOUT_SOCKET);
-			
+
 			DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
-			
+
 			HttpRequestBase getRequest;
-			if(get){
+			if (get) {
 				getRequest = new HttpGet(getBase() + uriPath);
-			}else{
+			} else {
 				getRequest = new HttpDelete(getBase() + uriPath);
 			}
-			
-			getRequest.addHeader("accept","application/json");
+
+			getRequest.addHeader("accept", "application/json");
 			HttpResponse response = httpClient.execute(getRequest);
 			result = getResult(response).toString();
 			httpClient.getConnectionManager().shutdown();
-		}
-		catch(Throwable ex){
+		} catch (Throwable ex) {
 			IOException io = new IOException("error");
 			io.initCause(ex);
 			throw io;
 		}
-		
+
 		return result;
 	}
-	
-	public String postOrPutBaseURI(String jsonContent, String uriPath, boolean post){
-		
+
+	public String postOrPutBaseURI(String jsonContent, String uriPath,
+			boolean post) {
+
 		String result = "";
-		try{
+		try {
 			HttpParams httpParameters = new BasicHttpParams();
-			HttpConnectionParams.setConnectionTimeout(httpParameters, TIMEOUT_CONNECTION);
+			HttpConnectionParams.setConnectionTimeout(httpParameters,
+					TIMEOUT_CONNECTION);
 			HttpConnectionParams.setSoTimeout(httpParameters, TIMEOUT_SOCKET);
 			DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
-			
+
 			HttpEntityEnclosingRequestBase postRequest;
-			if(post){
+			if (post) {
 				postRequest = new HttpPost(getBase() + uriPath);
-			}else{
+			} else {
 				postRequest = new HttpPut(getBase() + uriPath);
 			}
 			StringEntity input = new StringEntity(jsonContent);
@@ -90,21 +91,20 @@ public class RestClient {
 			HttpResponse response = httpClient.execute(postRequest);
 			result = getResult(response).toString();
 			httpClient.getConnectionManager().shutdown();
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		return result;
 	}
 
 	private StringBuilder getResult(HttpResponse response)
-		throws IllegalStateException, IOException{
+			throws IllegalStateException, IOException {
 		StringBuilder result = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(
-				(response.getEntity().getContent())),1024);
+				(response.getEntity().getContent())), 1024);
 		String output = "";
-		while((output = br.readLine()) != null){
+		while ((output = br.readLine()) != null) {
 			result.append(output);
 		}
 		return result;
@@ -113,43 +113,55 @@ public class RestClient {
 	private String getBase() {
 		return server;
 	}
-	
-	public String postObject(Object object, String strURI){
+
+	public String postObject(Object object, String strURI) {
 		String result = "";
-		try{
-			result = postOrPutBaseURI(objectMapper.writeValueAsString(object), strURI, true);
-		}
-		catch(Exception e){
+		try {
+			result = postOrPutBaseURI(objectMapper.writeValueAsString(object),
+					strURI, true);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
-	public <T> T getObject(String strUrl){
-		try{
+
+	public <T> T getObject(String strUrl) {
+		try {
 			String json = getOrDeleteBaseURI(strUrl, true);
 			System.out.println(json);
 			return objectMapper.readValue(json, new TypeReference<T>() {
 			});
-		}
-		catch(IOException ioe){
+		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 		return null;
 	}
 
-	public <T> List<T> getList(String strUrl, Class<T> clazz){
-		try{
+	public <T> List<T> getList(String strUrl, Class<T> clazz) {
+		try {
 			String json = getOrDeleteBaseURI(strUrl, true);
-			List<T> list;	
+			List<T> list;
 			TypeFactory typeFactory = TypeFactory.defaultInstance();
-			list = objectMapper.readValue(json, typeFactory.constructCollectionType(ArrayList.class, clazz));
+			list = objectMapper
+					.readValue(json, typeFactory.constructCollectionType(
+							ArrayList.class, clazz));
 			return list;
-		}
-		catch(IOException ioe){
+		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 		return new ArrayList<T>();
+	}
+
+
+
+	public String deleteObject(String strUrl) {
+		String result = "";
+		try {
+			result = getOrDeleteBaseURI(strUrl, false);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 }
