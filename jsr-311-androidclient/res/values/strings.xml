@@ -21,5 +21,10 @@
     <string name="cancel">Cancelar</string>
     <string name="student">Aluno</string>
     <string name="students">Alunos</string>
+    <string name="address_servidor">http://localhost:8080/jsf2/REST/alunos</string>
+    <string name="nome">Nome</string>
+    <string name="nota">Nota</string>
+    <string name="listar_alunos">Listar Alunos</string>
+    <string name="adicionar_aluno">Adicionar Aluno</string>
 
 </resources>

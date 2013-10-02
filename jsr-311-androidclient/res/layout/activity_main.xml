@@ -22,7 +22,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textServer"
         android:layout_marginTop="14dp"
-        android:ems="10" >
+        android:ems="10"
+        android:text="@string/address_servidor" >
 
         <requestFocus />
     </EditText>
@@ -36,7 +37,7 @@
         android:layout_alignRight="@+id/editNome"
         android:layout_below="@+id/editNome"
         android:layout_marginTop="28dp"
-        android:text="Listar alunos" />
+        android:text="@string/listar_alunos" />
 
     <Button
         android:id="@+id/add_button"
@@ -47,6 +48,6 @@
         android:layout_alignRight="@+id/list_button"
         android:layout_below="@+id/list_button"
         android:layout_marginTop="14dp"
-        android:text="Adicionar Aluno" />
+        android:text="@string/adicionar_aluno" />
 
 </RelativeLayout>

@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+
 		TextView textServer = (TextView) findViewById(R.id.textServer);
 		final String serverAddress = textServer.getText().toString();
 
@@ -47,10 +48,12 @@ public class MainActivity extends Activity implements OnClickListener {
 				builder.setNeutralButton(R.string.cancel, null);
 				final List<Aluno> alunos = restClient.getList("", Aluno.class);
 				String[] alunosNames = new String[alunos.size()];
+
 				for (int i = 0; i < alunos.size(); i++) {
 					Aluno aluno = alunos.get(i);
 					alunosNames[i] = aluno.getNome();
 				}
+
 				builder.setSingleChoiceItems(alunosNames, -1, null);
 				builder.setPositiveButton(R.string.btEdit,
 						new DialogInterface.OnClickListener() {
@@ -87,6 +90,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						Toast.LENGTH_LONG).show();
 			}
 			break;
+			
 		case R.id.add_button:
 			try {
 				final RestClient restClient = new RestClient(serverAddress);
@@ -101,19 +105,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private void editAluno(final RestClient restClient, final Aluno aluno) {
+		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.student);
 		builder.setNegativeButton(R.string.cancel, null);
-		
+
 		final View layout = getLayoutInflater().inflate(R.layout.aluno_form,
 				null);
 		builder.setView(layout);
-		
+
 		final EditText editNome = (EditText) layout.findViewById(R.id.editNome);
 		final EditText editNota = (EditText) layout.findViewById(R.id.editNota);
-		
+
 		editNome.setText(aluno.getNome() != null ? aluno.getNome() : "");
 		editNota.setText(aluno.getNota() + "");
+		
 		DialogInterface.OnClickListener onclick = new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int selected) {
@@ -125,6 +131,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		};
 		builder.setPositiveButton(R.string.btSave, onclick);
+		
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
