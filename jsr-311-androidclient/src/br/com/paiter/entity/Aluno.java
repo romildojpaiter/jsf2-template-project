@@ -6,7 +6,9 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 public class Aluno {
 	
 	private int id;
+
 	private String nome;
+	
 	private int nota;
 
 	public Aluno() {

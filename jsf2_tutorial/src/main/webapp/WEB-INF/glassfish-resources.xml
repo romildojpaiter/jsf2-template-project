@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+
+<resources>
+	<jdbc-connection-pool name="java:app/sapecasMTConnectionPool"
+		res-type="javax.sql.ConnectionPoolDataSource" 
+		datasource-classname="org.postgresql.ds.PGPoolingDataSource">
+		<!-- datasource-classname=com.mysql.jdbc.jdbc2.optional.MysqlDataSource -->
+		<property name="User" value="postgres" />
+		<property name="Password" value="postgres" />
+		<property name="Port" value="5432" />
+		<property name="DatabaseName" value="sapecasmt" />
+		<property name="ServerName" value="localhost" />
+		<property name="URL" value="jdbc:postgresql://localhost:5432/sapecasmt" />
+		<!-- <property name="Url" value="jdbc:mysql://localhost:3306/my_db" /> -->
+		
+	</jdbc-connection-pool>
+
+	<jdbc-resource enabled="true" jndi-name="java:app/jdbc/sapecasDataSource"
+		object-type="user" pool-name="java:app/sapecasMTConnectionPool">
+		<description />
+	</jdbc-resource>
+	
+</resources>  

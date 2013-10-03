@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context displayName="jsf2_tutorial" path="/jsf2">
+    
+  <!-- PostgreSQL application Datasource -->
+  <!-- 
+  <Resource auth="Container"
+      driverClassName="org.postgresql.Driver"
+      maxActive="1" maxIdle="1"
+      maxWait="5000"
+      name="jdbc/sapecasmt"
+      password="postgres"
+      username="postgres"
+      type="javax.sql.DataSource"
+      url="jdbc:postgresql://localhost:5432/sapecasmt"
+      />
+   -->
+   
+</Context>
