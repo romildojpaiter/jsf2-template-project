@@ -1,4 +1,4 @@
-package br.com.sapecasmt.core.persistence;
+package br.com.portalcom.core.persistence;
 
 import java.util.List;
 
@@ -83,4 +83,5 @@ public class JPAUtil {
 	 * public static void closeEntityManagerFactory() { closeEntityManager();
 	 * JPAUtil.factory.close(); }
 	 */
+	
 }

@@ -1,4 +1,4 @@
-package br.com.sapecasmt.core.providerws;
+package br.com.sapecasmt.providerws;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.com.sapecasmt.core.dao.provider.AlunoDAO;
+import br.com.portalcom.core.dao.provider.AlunoDAO;
 import br.com.sapecasmt.entity.Aluno;
 
 @Path("/alunos")
