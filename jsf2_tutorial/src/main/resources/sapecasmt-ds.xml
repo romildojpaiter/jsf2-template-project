@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+    <datasource 
+        jndi-name="sapecasDatasource"
+        enabled="true" 
+        use-java-context="true" pool-name="sapecasDatasource_pool">
+        <connection-url>jdbc:postgresql://localhost:5432/sapecasmt</connection-url>
+        <driver>postgresql-9.1-901.jdbc4.jar</driver>
+        <security>
+		      <user-name>postgres</user-name>
+		      <password>postgres</password>
+        </security>
+    </datasource>
+</datasources>

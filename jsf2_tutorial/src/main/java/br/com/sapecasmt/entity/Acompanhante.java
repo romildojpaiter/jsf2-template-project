@@ -3,6 +3,7 @@ package br.com.sapecasmt.entity;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.ForeignKey;
 
 import br.com.portalcom.core.dominio.DominioSexo.DOMINIO_SEXO;
@@ -31,15 +33,15 @@ import br.com.portalcom.core.dominio.DominioSimNao.DOMINIO_SIM_NAO;
 import br.com.portalcom.core.entitys.AbstractEntity;
 
 @Entity
-@Table(name="perfil")
-@SequenceGenerator(name="perfil_seq", sequenceName="perfil_seq", allocationSize=1)
-public class Perfil implements AbstractEntity {
+@Table(name="acompanhante")
+@SequenceGenerator(name="acompanhante_seq", sequenceName="acompanhante_seq", allocationSize=1)
+public class Acompanhante implements AbstractEntity {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="perfil_seq", strategy=GenerationType.SEQUENCE)
-	private Integer idPerfil;
+	@GeneratedValue(generator="acompanhante_seq", strategy=GenerationType.SEQUENCE)
+	private Integer idAcompanhante;
 	
 	@OneToOne(optional=false, 
 		fetch=FetchType.EAGER, 
@@ -51,29 +53,31 @@ public class Perfil implements AbstractEntity {
 	@NotNull
 	private String nomePerfil;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinTable (
-        name = "perfil_telefone", 
-        joinColumns = {@JoinColumn (name = "idPerfil")}, 
+        name = "acompanhante_telefone", 
+        joinColumns = {@JoinColumn (name = "idAcompanhante")}, 
         inverseJoinColumns = {@JoinColumn (name = "idTelefone")})
 	@ForeignKey(name="fk_perfil_telefone", inverseName="fk_telefone_perfil")
 	private Set<Telefone> telefones; 	
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany
+	@ElementCollection(fetch=FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JoinTable(name="perfil_imagem",
-			joinColumns=@JoinColumn(referencedColumnName="idPerfil"),
+	@JoinTable(name="acompanhante_imagem",
+			joinColumns=@JoinColumn(referencedColumnName="idAcompanhante"),
 			inverseJoinColumns=@JoinColumn(referencedColumnName="idImagem"))
 	@ForeignKey(name="fk_perfil_imagem",inverseName="fk_imagem_perfil")
 	private Set<Imagem> imagens;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
+	@ElementCollection(fetch=FetchType.EAGER)
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinTable (
-        name = "perfil_comentario", 
-        joinColumns = {@JoinColumn (name = "idPerfil")}, 
+        name = "acompanhante_comentario", 
+        joinColumns = {@JoinColumn (name = "idAcompanhante")}, 
         inverseJoinColumns = {@JoinColumn (name = "idComentario")})
 	@ForeignKey(name="fk_perfil_comentario", inverseName="fk_comentario_perfil")
 	private Set<Comentario> comentarios;
@@ -121,12 +125,12 @@ public class Perfil implements AbstractEntity {
 	@Version
 	private Integer version;
 
-	public Integer getIdPerfil() {
-		return idPerfil;
+	public Integer getIdAcompanhante() {
+		return idAcompanhante;
 	}
 
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
+	public void setIdAcompanhante(Integer idPerfil) {
+		this.idAcompanhante = idPerfil;
 	}
 
 	public Modelo getModelo() {
@@ -294,7 +298,7 @@ public class Perfil implements AbstractEntity {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((idPerfil == null) ? 0 : idPerfil.hashCode());
+				+ ((idAcompanhante == null) ? 0 : idAcompanhante.hashCode());
 		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
@@ -307,11 +311,11 @@ public class Perfil implements AbstractEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Perfil other = (Perfil) obj;
-		if (idPerfil == null) {
-			if (other.idPerfil != null)
+		Acompanhante other = (Acompanhante) obj;
+		if (idAcompanhante == null) {
+			if (other.idAcompanhante != null)
 				return false;
-		} else if (!idPerfil.equals(other.idPerfil))
+		} else if (!idAcompanhante.equals(other.idAcompanhante))
 			return false;
 		if (version == null) {
 			if (other.version != null)
@@ -323,7 +327,7 @@ public class Perfil implements AbstractEntity {
 
 	@Override
 	public Integer getId() {
-		return this.idPerfil;
+		return this.idAcompanhante;
 	}
 
 	public Set<Imagem> getImagens() {

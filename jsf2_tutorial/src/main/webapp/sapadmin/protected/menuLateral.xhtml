@@ -1,0 +1,143 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<!-- BEGIN SIDEBAR -->
+	<h:form>
+      <div class="sidebar-scroll">
+          <div id="sidebar" class="nav-collapse collapse">
+
+              <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+              <div class="navbar-inverse">
+                  <form class="navbar-search visible-phone">
+                      <input type="text" class="search-query" placeholder="Pesquisar" />
+                  </form>
+              </div>
+              <!-- END RESPONSIVE QUICK SEARCH FORM -->
+              <!-- BEGIN SIDEBAR MENU -->
+              <ul class="sidebar-menu">
+                  <li class="sub-menu">
+                      <h:link outcome="#{menuSapadminAction.acessoDashboard()}">
+                          <i class="icon-dashboard"></i>
+                          <h:outputText value="Dashboard" />
+                      </h:link>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>Tabelas</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li>
+                          	<h:link outcome="#{menuSapadminAction.acessoModeloList()}">
+                          		<h:outputText value="Modelos" />
+                          	</h:link>
+                          </li>
+                          <li>
+                          	<h:link outcome="#{menuSapadminAction.acessoAcompanhantesList()}">
+                          		<h:outputText value="Acompanhantes" />
+                          	</h:link>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-cogs"></i>
+                          <span>Components</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="calendar.html">Calendar</a></li>
+                          <li><a class="" href="grids.html">Grids</a></li>
+                          <li><a class="" href="chartjs.html">Chart Js</a></li>
+                          <li><a class="" href="flot_chart.html">Flot Charts</a></li>
+                          <li><a class="" href="gallery.html"> Gallery</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu active">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>Form Stuff</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="form_layout.html">Form Layouts</a></li>
+                          <li><a class="" href="form_component.html">Form Components</a></li>
+                          <li><a class="" href="form_wizard.html">Form Wizard</a></li>
+                          <li><a class="" href="form_validation.html">Form Validation</a></li>
+                          <li><a class="" href="dropzone.html">Dropzone File Upload </a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-th"></i>
+                          <span>Data Tables</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="basic_table.html">Basic Table</a></li>
+                          <li><a class="" href="dynamic_table.html">Dynamic Table</a></li>
+                          <li><a class="" href="editable_table.html">Editable Table</a></li>
+                      </ul>
+                  </li>
+
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-fire"></i>
+                          <span>Icons</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="font_awesome.html">Font Awesome</a></li>
+                          <li><a class="" href="glyphicons.html">Glyphicons</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-file-alt"></i>
+                          <span>Sample Pages</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="blank.html">Blank Page</a></li>
+                          <li><a class="" href="blog.html">Blog</a></li>
+                          <li><a class="" href="timeline.html">Timeline</a></li>
+                          <li><a class="" href="about_us.html">About Us</a></li>
+                          <li><a class="" href="contact_us.html">Contact Us</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-glass"></i>
+                          <span>Extra</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="lock.html">Lock Screen</a></li>
+                          <li><a class="" href="invoice.html">Invoice</a></li>
+                          <li><a class="" href="pricing_tables.html">Pricing Tables</a></li>
+                          <li><a class="" href="search_result.html">Search Result</a></li>
+                          <li><a class="" href="faq.html">FAQ</a></li>
+                          <li><a class="" href="404.html">404 Error</a></li>
+                          <li><a class="" href="500.html">500 Error</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                  	  <h:commandLink action="#{autenticador.logout()}">
+                          <i class="icon-user"></i>
+                          <h:outputText value="Sair" />
+                  	  </h:commandLink>
+                  </li>
+              </ul>
+              <!-- END SIDEBAR MENU -->
+          </div>
+      </div>
+      <!-- END SIDEBAR -->
+      </h:form>
+	
+</ui:fragment>

@@ -1,0 +1,32 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+   <!-- BEGIN JAVASCRIPTS -->
+   <!-- Load javascripts at bottom, this will reduce page load time -->
+   <h:outputScript name="jquery-1.8.3.min.js" library="js" />
+   <h:outputScript name="jquery.nicescroll.js" library="js" />
+   <h:outputScript name="bootstrap.min.js" library="assets/bootstrap/js" />
+   <h:outputScript name="jquery.blockui.js" library="js" />
+   <h:outputScript name="jquery.bootstrap.wizard.min.js" library="assets/bootstrap-wizard/" />
+   
+   <!-- ie8 fixes -->
+   <!--[if lt IE 9]>
+   <h:outputScript name="excanvas.js" library="js" />
+   <h:outputScript name="respond.js" library="js" />
+   <![endif]-->
+   <h:outputScript name="jquery.validate.min.js" library="js" />
+   <h:outputScript name="additional-methods.min.js" library="js" />
+   <h:outputScript name="chosen.jquery.min.js" library="assets/chosen-bootstrap/chosen" />
+   <h:outputScript name="jquery.uniform.min.js" library="assets/uniform" />
+   
+   <!--common script for all pages-->
+   <h:outputScript name="common-scripts.js" library="js" />
+   <!--script for this page-->
+   <h:outputScript name="form-validation-script.js" library="js" />
+
+   <!-- END JAVASCRIPTS -->
+   
+</ui:fragment>

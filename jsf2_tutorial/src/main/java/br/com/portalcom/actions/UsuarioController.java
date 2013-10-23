@@ -1,5 +1,8 @@
 package br.com.portalcom.actions;
 
+import java.io.Serializable;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,12 +13,18 @@ import br.com.portalcom.entity.Usuario;
 
 @Named
 @SessionScoped
-public class UsuarioController {
+public class UsuarioController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private Logger logger;
+	private transient Logger logger;
 	
-	@Inject
 	private Usuario usuario;
+	
+	@PostConstruct
+	private void init(){
+		usuario = new Usuario();
+	}
 
 }

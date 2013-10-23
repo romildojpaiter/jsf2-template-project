@@ -5,19 +5,27 @@
 
 	<!-- <persistence-unit name="default" transaction-type="RESOURCE_LOCAL"> -->
 	    
-	<persistence-unit name="default" transaction-type="JTA">
+	<persistence-unit name="sapecasPersistence" transaction-type="JTA">
     	
 	   <provider>org.hibernate.ejb.HibernatePersistence</provider>  
 	   <jta-data-source>java:app/jdbc/sapecasDataSource</jta-data-source>  
 	  
-	   <properties>  
-		  <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-	      <property name="hibernate.hbm2ddl.auto" value="update"/>
-		  <property name="hibernate.show_sql" value="true" />
-		  <property name="hibernate.format_sql" value="true" />
-	   </properties>			    	    
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
 		
-<!-- 		<properties>
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.timeout" value="1800" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="3000" />
+			<property name="hibernate.c3p0.acquire_increment" value="2" />
+		</properties>			    	    
+		
+		<!-- 		
+		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sapecasmt" />
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />
@@ -31,7 +39,8 @@
 			<property name="hibernate.cache.use_query_cache" value="true" />
 			<property name="hibernate.cache.region.factory_class"
 				value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
-		</properties> -->
+		</properties> 
+		-->
 	</persistence-unit>
 
 </persistence>

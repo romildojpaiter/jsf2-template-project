@@ -1,6 +1,6 @@
 package br.com.portalcom.actions;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import br.com.portalcom.entity.Usuario;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class Autenticador {
 	
 	@Inject
@@ -20,6 +20,10 @@ public class Autenticador {
 	
 	private void autenticator(){
 		
+	}
+	
+	public String logout(){
+		return "/sapadmin/login";
 	}
 
 }

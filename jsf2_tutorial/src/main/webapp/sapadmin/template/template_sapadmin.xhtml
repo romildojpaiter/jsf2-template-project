@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:jl="http://xmlns.jcp.org/jsf/composite/jsflive"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>
+		<h:outputText value="#{msg['sapadmin.page.title']}" />
+	</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description" />
+	<meta name="author" />
+
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputStylesheet library="css" name="style-responsive.css"/>
+	<h:outputStylesheet library="css" name="style-default.css"/>
+	
+	<h:outputStylesheet library="assets/bootstrap/css/" name="bootstrap.min.css" />
+	<h:outputStylesheet library="assets/bootstrap/css/" name="bootstrap-responsive.min.css" />
+	<h:outputStylesheet library="assets/font-awesome/css/" name="font-awesome.css" />
+	
+	<h:outputStylesheet library="assets/fullcalendar/fullcalendar/" name="bootstrap-fullcalendar.css" />
+	<h:outputStylesheet library="assets/jquery-easy-pie-chart/" name="jquery.easy-pie-chart.css" />
+	
+
+</h:head>
+
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<h:body class="fixed-top">
+
+	<ui:insert name="header">
+		<ui:include src="/sapadmin/template/header.xhtml" />
+	</ui:insert>
+
+	<div id="container" class="row-fluid">
+		<ui:insert name="menuLateral">
+			<ui:include src="/sapadmin/protected/menuLateral.xhtml" />
+		</ui:insert>
+		
+		<ui:insert name="content"/>
+		
+	</div>
+
+	<ui:insert name="footer">
+		<ui:include src="/sapadmin/template/footer.xhtml"/>
+	</ui:insert>
+	
+</h:body>
+<!-- END BODY -->
+</html>
