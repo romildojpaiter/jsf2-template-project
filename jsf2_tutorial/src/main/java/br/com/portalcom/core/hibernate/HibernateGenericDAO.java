@@ -190,7 +190,8 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 
 	public Session getSession() {
 		if(this.session == null){
-			this.session = (Session) hibernateUtil.getEntityManager().getDelegate();
+			// (Session) hibernateUtil.getEntityManager().getDelegate();
+			this.session = hibernateUtil.getHibernateSession(); 
 		}
 		return this.session;
 	}
