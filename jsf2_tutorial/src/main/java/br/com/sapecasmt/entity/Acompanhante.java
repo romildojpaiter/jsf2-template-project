@@ -22,10 +22,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.ForeignKey;
 
 import br.com.portalcom.core.dominio.DominioSexo.DOMINIO_SEXO;
@@ -35,6 +36,8 @@ import br.com.portalcom.core.entitys.AbstractEntity;
 @Entity
 @Table(name="acompanhante")
 @SequenceGenerator(name="acompanhante_seq", sequenceName="acompanhante_seq", allocationSize=1)
+@JsonIgnoreProperties(ignoreUnknown=true)
+@XmlRootElement
 public class Acompanhante implements AbstractEntity {
 	
 	private static final long serialVersionUID = 1L;

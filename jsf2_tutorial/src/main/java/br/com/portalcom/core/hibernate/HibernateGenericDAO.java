@@ -23,7 +23,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.portalcom.core.dao.inter.BaseDAO;
+import br.com.portalcom.core.qualifier.HibernateInjectQualifier;
 
+@HibernateInjectQualifier
 public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 	 
 	private static final long serialVersionUID = 1L;
@@ -190,7 +192,7 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 
 	public Session getSession() {
 		if(this.session == null){
-			// (Session) hibernateUtil.getEntityManager().getDelegate();
+			// this.session = (Session) hibernateUtil.getEntityManager().getDelegate();
 			this.session = hibernateUtil.getHibernateSession(); 
 		}
 		return this.session;

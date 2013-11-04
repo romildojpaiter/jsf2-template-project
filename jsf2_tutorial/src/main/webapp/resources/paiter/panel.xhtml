@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+        xmlns:jstl="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:jfunc="http://xmlns.jcp.org/jsp/jstl/functions">
+
+	<composite:interface>
+		<composite:attribute name="titulo" required="false" />
+		<composite:attribute name="formulario" required="false" />
+	</composite:interface>
+
+	<composite:implementation>
+
+		<h3 class="page-title">
+			<h:outputText value="#{cc.attrs.titulo}" />
+		</h3>
+
+		<div class="row-fluid">
+           <div class="span12">
+               <!-- BEGIN VALIDATION STATES-->
+               <div class="widget green">
+                   <div class="widget-title">
+                       <h4><i class="icon-reorder"></i> <h:outputText value="#{cc.attrs.titulo}"/> </h4>
+                   </div>
+                   
+                   <div class="widget-body form">
+                   	<h:form>
+						<ui:insert name="formulario">
+							<ui:include src="#{cc.attrs.formulario}"/>
+						</ui:insert>
+					</h:form>                   
+                   </div>
+               </div>
+               <!-- END VALIDATION STATES-->
+           </div>
+       </div>
+                                    
+	</composite:implementation>
+	
+</ui:composition>

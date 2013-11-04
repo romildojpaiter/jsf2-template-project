@@ -7,10 +7,10 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.hibernate.ejb.HibernateEntityManager;
 
-import br.com.portalcom.core.qualifier.HibernateInjectQualifaier;
+import br.com.portalcom.core.qualifier.HibernateInjectQualifier;
 
 @Named
-@HibernateInjectQualifaier
+@HibernateInjectQualifier
 public class HibernateUtil {
 
 	@PersistenceContext
@@ -26,9 +26,9 @@ public class HibernateUtil {
 	}
 	
 	public Session getHibernateSession(){
-		 HibernateEntityManager hem = entityManager.unwrap(HibernateEntityManager.class);
-		 Session session = hem.getSession();
-		 return session;
+		// HibernateEntityManager hem = entityManager.unwrap(HibernateEntityManager.class);
+		Session session = entityManager.unwrap(Session.class);
+		return session;
 	}
 
 }

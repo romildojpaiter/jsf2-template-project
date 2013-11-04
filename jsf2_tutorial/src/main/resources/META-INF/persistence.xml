@@ -7,10 +7,12 @@
 	    
 	<persistence-unit name="sapecasPersistence" transaction-type="JTA">
     	
-	   <provider>org.hibernate.ejb.HibernatePersistence</provider>  
+	   <provider>org.hibernate.ejb.HibernatePersistence</provider>
+	   
 	   <jta-data-source>java:app/jdbc/sapecasDataSource</jta-data-source>  
 	  
 		<properties>
+		    <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />  
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />

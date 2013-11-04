@@ -1,0 +1,26 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:paiter="http://xmlns.jcp.org/jsf/composite/paiter">
+	
+	
+	
+	
+		<paiter:inputText idi="txtNome" label="Nome" value="#{modeloMB.modelo.nome}" />
+		
+		<h:inputText id="cpf" styleClass="span6" value="#{modeloMB.modelo.cpf}" />
+
+
+        <div class="form-actions">
+            <h:commandButton action="#{modeloMB.salvar()}" value="Salvar" style-class="btn btn-success" />
+            <h:commandButton action="#{modeloMB.cancelar()}" value="Cancelar" style-class="btn" />
+            <button class="btn" type="button">Cancel</button>
+        </div>
+		
+	
+
+	
+</ui:fragment>

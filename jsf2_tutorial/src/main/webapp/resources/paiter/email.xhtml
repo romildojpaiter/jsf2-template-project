@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+        xmlns:jstl="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:jfunc="http://xmlns.jcp.org/jsp/jstl/functions">
+
+	<composite:interface>
+		<composite:attribute name="value" required="false" />
+	</composite:interface>
+
+	<composite:implementation>
+		<h:outputLabel value="Email id: "></h:outputLabel>
+		<h:inputText value="#{cc.attrs.value}"></h:inputText>
+	</composite:implementation>
+	
+</ui:composition>
