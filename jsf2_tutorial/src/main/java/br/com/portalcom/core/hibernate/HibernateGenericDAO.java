@@ -3,11 +3,15 @@ package br.com.portalcom.core.hibernate;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -23,6 +27,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.portalcom.core.dao.inter.BaseDAO;
+import br.com.portalcom.core.interceptor.InterceptorLog;
 import br.com.portalcom.core.qualifier.HibernateInjectQualifier;
 
 @HibernateInjectQualifier
@@ -263,18 +268,31 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 		this.session = session;
 	}
     
-    @SuppressWarnings("unchecked")
-	private void showValidationErrors(T obj) {
+    @InterceptorLog
+    private void showValidationErrors(T obj) {
     	ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     	Validator validator = factory.getValidator();
     	
     	Set<ConstraintViolation<T>> constraintViolations = validator.validate( obj );
-
+    	List<FacesMessage> listaMensagens = new ArrayList<FacesMessage>();
+    	
     	for (ConstraintViolation<T> constraintViolation : constraintViolations) {
 			
-			log.warn("Entity: [" + constraintViolation.getRootBean().getClass().getCanonicalName() + 
+    		FacesMessage mensagem = new FacesMessage("No email value!", "Email Validation Error");
+    		mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+    		listaMensagens.add(mensagem);
+    		
+    		log.warn("Entity: [" + constraintViolation.getRootBean().getClass().getCanonicalName() + 
 					"] Value: [" + String.valueOf(constraintViolation.getInvalidValue()) + "] Msg: [" +constraintViolation.getMessage() +"]");
 		}
+    	
+    	if(listaMensagens.size() > 0){
+    		FacesContext context = FacesContext.getCurrentInstance();
+    		context.getExternalContext().getSessionMap().put("MULTI_PAGE_MESSAGES_SUPPORT", listaMensagens);
+    		return;
+    		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+    	    // session.setAttribute("MULTI_PAGE_MESSAGES_SUPPORT", listaMensagens);
+    	}
     	
 	
 	}
