@@ -1,6 +1,9 @@
 package br.com.sapecasmt.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Embedded;
@@ -23,7 +26,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Email;
 
 import br.com.portalcom.core.dominio.DominioSexo.DOMINIO_SEXO;
@@ -72,8 +74,8 @@ public class Modelo implements AbstractEntity {
         name = "modelo_telefone", 
         joinColumns = {@JoinColumn (name = "idModelo")}, 
         inverseJoinColumns = {@JoinColumn (name = "idTelefone")})
-	@ForeignKey(name="fk_modelo_telefone", inverseName="fk_telefone_modelo")
-	private Set<Telefone> telefones;
+	// @ForeignKey(name="fk_modelo_telefone", inverseName="fk_telefone_modelo")
+	private List<Telefone> telefones;
 	
 	@Embedded
 	private Endereco endereco;
@@ -84,6 +86,11 @@ public class Modelo implements AbstractEntity {
 	@Version
 	private Integer version;
 	
+
+	public Modelo() {
+		this.telefones = new ArrayList<Telefone>();
+		this.endereco = new Endereco();
+	}
 	
 
 	public Integer getIdModelo() {
@@ -110,11 +117,11 @@ public class Modelo implements AbstractEntity {
 		this.cpf = cpf;
 	}
 
-	public Set<Telefone> getTelefones() {
+	public List<Telefone> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(Set<Telefone> telefones) {
+	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 
@@ -194,7 +201,42 @@ public class Modelo implements AbstractEntity {
 	public Integer getId() {
 		return this.idModelo;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getOrgaoEmissor() {
+		return orgaoEmissor;
+	}
+
+	public void setOrgaoEmissor(String orgaoEmissor) {
+		this.orgaoEmissor = orgaoEmissor;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public DOMINIO_SEXO getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(DOMINIO_SEXO sexo) {
+		this.sexo = sexo;
+	}
 	
+	public List<Telefone> getListaTelefone(){
+		return new ArrayList<Telefone>(this.telefones);
+	}
 	
 
 }

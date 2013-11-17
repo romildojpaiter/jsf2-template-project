@@ -33,9 +33,48 @@
 		</repository>
 				
 	</repositories>
+
+		
+	<properties>
+		<owb.version>1.2.0</owb.version>
+		<mojarra.version>2.2.2</mojarra.version>     
+	</properties>	
 	
 	
 	<dependencies>
+	               	    
+	    <!-- OpenWebBeans - Contexts -->
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-spi</artifactId>
+            <version>${owb.version}</version>
+        </dependency>				
+        
+		<dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-impl</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-resource</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-jsf</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.openwebbeans</groupId>
+            <artifactId>openwebbeans-web</artifactId>
+            <version>${owb.version}</version>
+        </dependency>
+
+		
 
 	    <!-- Conversao de Textos -->
 	    <dependency>
@@ -52,6 +91,12 @@
 			<version>3.5</version>
 		</dependency>
 		
+		<dependency>  
+		    <groupId>org.primefaces.themes</groupId>  
+		    <artifactId>all-themes</artifactId>  
+		    <version>1.0.10</version>  
+		</dependency> 
+    
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces-mobile</artifactId>
@@ -171,16 +216,17 @@
         </dependency>
         
         <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.1.0.CR2</version>
-        </dependency>
-        
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
         </dependency>
+
+        <!-- <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.1.0.CR2</version>
+        </dependency> -->
+        
 
         <!-- <dependency>
             <groupId>mysql</groupId>
@@ -226,9 +272,8 @@
 			<version>1.1</version>
 		</dependency>
 	
+		
 		<!-- Jersey Rest -->
-
-	
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
@@ -267,11 +312,11 @@
 		</dependency>
             
 		<!-- Java Security -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.security.auth.message</artifactId>
 			<version>3.1</version>
-		</dependency>
+		</dependency> -->
     
 		<!-- Java EE api -->	
 		<dependency>
@@ -281,7 +326,7 @@
 		</dependency>
            
 		<!-- Common -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
@@ -292,7 +337,7 @@
 			<groupId>javax.annotation</groupId>
 			<artifactId>jsr250-api</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency> -->
  
  
 		<!-- Jetty-specific scopes and artifacts -->
@@ -315,21 +360,25 @@
 		<dependency>
 		  <groupId>com.sun.faces</groupId>
 		  <artifactId>jsf-api</artifactId>
-		  <version>2.1.13</version>
+		  <version>${mojarra.version}</version>
+		  <scope>compile</scope>
 		</dependency>
 		
 		<dependency>
 		  <groupId>com.sun.faces</groupId>
 		  <artifactId>jsf-impl</artifactId>
-		  <version>2.1.13</version>
+		  <version>${mojarra.version}</version>
+		  <scope>compile</scope>
 		</dependency>
 		
+		<!-- Servlet  -->
 		<dependency>
 		  <groupId>javax.servlet</groupId>
 		  <artifactId>javax.servlet-api</artifactId>
 		  <version>3.0.1</version>
 		</dependency>		
  
+		<!-- JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -337,14 +386,16 @@
 			<scope>runtime</scope>
 		</dependency>
  
+		<!-- 	
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.0.4.Final</version>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> 
+		-->
  
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>el-impl</artifactId>
 			<version>2.2</version>
@@ -355,7 +406,8 @@
 					<artifactId>el-api</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+		</dependency> -->
+		
 	</dependencies>
 	
 	<build>

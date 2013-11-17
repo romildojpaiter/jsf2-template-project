@@ -28,7 +28,7 @@
     <servlet-name>ServletAdaptor</servlet-name>
     <servlet-class>
 	        com.sun.jersey.spi.container.servlet.ServletContainer
-	    </servlet-class>
+	</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
       <param-value>true</param-value>
@@ -38,7 +38,7 @@
     
   <servlet-mapping>
     <servlet-name>ServletAdaptor</servlet-name>
-    <url-pattern>/REST/*</url-pattern>
+    <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
   
   <!-- <param-value>Production</param-value> -->
@@ -55,6 +55,11 @@
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>server</param-value>
-    </context-param>  
+    </context-param>
+
+	<context-param>  
+	    <param-name>primefaces.THEME</param-name>  
+	    <param-value>bootstrap</param-value>  
+	</context-param>    
   
 </web-app>

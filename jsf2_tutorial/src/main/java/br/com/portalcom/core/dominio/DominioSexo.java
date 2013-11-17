@@ -13,23 +13,23 @@ public class DominioSexo {
 		FEMININO("Feminino"),
 		TRANSEXUAL("Transexual");
 		
-		private String descricao;
+		private String desc;
 		private String longDesc;
 		private String description;
 		
 		private DOMINIO_SEXO(String descricao) {
-			this.descricao = descricao;
+			this.desc = descricao;
 		}
 				 
 		private DOMINIO_SEXO(String descricao, String longDesc, String description) {
-			this.descricao   = descricao;
+			this.desc   = descricao;
 			this.longDesc    = longDesc;
 			this.description = description;
 		}
 
 		
 		public String getLongDesc() {
-			return (StringUtils.isBlank(this.longDesc)) ? this.descricao : this.longDesc;
+			return (StringUtils.isBlank(this.longDesc)) ? this.desc : this.longDesc;
 		}
 
 		public Integer getOrdinal() {
@@ -41,7 +41,7 @@ public class DominioSexo {
 		}
 
 		public String getDesc() {
-			return this.descricao;
+			return this.desc;
 		}
 
 		public Integer getSize() {			

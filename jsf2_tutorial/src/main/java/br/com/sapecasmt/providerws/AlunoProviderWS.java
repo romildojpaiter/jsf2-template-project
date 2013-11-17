@@ -2,6 +2,7 @@ package br.com.sapecasmt.providerws;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,11 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.portalcom.core.dao.provider.AlunoDAO;
+import br.com.portalcom.core.qualifier.PortalcomDAO;
 import br.com.sapecasmt.entity.Aluno;
 
 @Path("/alunos")
 public class AlunoProviderWS {
-	
+
 	AlunoDAO alunoDAO = new AlunoDAO();
 	
 	@GET

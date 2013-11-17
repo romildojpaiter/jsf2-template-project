@@ -71,14 +71,14 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll()  {
-		Criteria criteria = session.createCriteria(this.objClass);
+		Criteria criteria = getSession().createCriteria(this.objClass);
 		final List<T> result = criteria.list();
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll(String orderBy)  {
-		Criteria criteria = session.createCriteria(this.objClass);
+		Criteria criteria = getSession().createCriteria(this.objClass);
 		criteria.addOrder(Order.asc(orderBy));
 		final List<T> result = criteria.list();
 		return result;
@@ -125,7 +125,7 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 	@SuppressWarnings("unchecked")
 	public List<T> findByField(String[] fieldOnTable, Object[] value)  {
 		
-		Criteria c = session.createCriteria(this.objClass);
+		Criteria c = getSession().createCriteria(this.objClass);
 
 		for (int i = 0; i < fieldOnTable.length; i++) {
 
@@ -160,33 +160,33 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
 	@SuppressWarnings("unchecked")
 	public List<T> findByFieldLike(String[] fieldOnTable, Object[] value)  {
 		
-		Criteria c = session.createCriteria(this.objClass);
+		Criteria criteira = getSession().createCriteria(this.objClass);
 
 		for (int i = 0; i < fieldOnTable.length; i++) {
 
 			if (value[i] instanceof String) {
-				c.add(Restrictions.like(fieldOnTable[i], String.valueOf(value[i]), MatchMode.ANYWHERE).ignoreCase());
+				criteira.add(Restrictions.like(fieldOnTable[i], String.valueOf(value[i]), MatchMode.ANYWHERE).ignoreCase());
 			} 
 			else if (value[i] instanceof Date) {
-				c.add(Restrictions.eq(fieldOnTable[i], value[i]));
+				criteira.add(Restrictions.eq(fieldOnTable[i], value[i]));
 			} 
 			else {
-				c.add(Restrictions.like(fieldOnTable[i], value[i]));
+				criteira.add(Restrictions.like(fieldOnTable[i], value[i]));
 			}
 		}
-		return c.list();
+		return criteira.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findByFieldLikeOrdered(String fieldOnTable,String value, String orderBy)  {
-		Criteria criteria = session.createCriteria(this.objClass).add(Restrictions.like(fieldOnTable, value, MatchMode.ANYWHERE).ignoreCase());
+		Criteria criteria = getSession().createCriteria(this.objClass).add(Restrictions.like(fieldOnTable, value, MatchMode.ANYWHERE).ignoreCase());
 		criteria.addOrder(Order.asc(orderBy));
 		return criteria.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findByFieldOrdered(String fieldOnTable, Object value,String orderBy)  {
-		Criteria criteria = session.createCriteria(this.objClass).add(Restrictions.eq(fieldOnTable, value));
+		Criteria criteria = getSession().createCriteria(this.objClass).add(Restrictions.eq(fieldOnTable, value));
 		criteria.addOrder(Order.asc(orderBy));
 		return criteria.list();
 	}
@@ -277,7 +277,6 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
     	List<FacesMessage> listaMensagens = new ArrayList<FacesMessage>();
     	
     	for (ConstraintViolation<T> constraintViolation : constraintViolations) {
-			
     		FacesMessage mensagem = new FacesMessage("No email value!", "Email Validation Error");
     		mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
     		listaMensagens.add(mensagem);
@@ -289,13 +288,24 @@ public class HibernateGenericDAO<T> implements BaseDAO<T>  {
     	if(listaMensagens.size() > 0){
     		FacesContext context = FacesContext.getCurrentInstance();
     		context.getExternalContext().getSessionMap().put("MULTI_PAGE_MESSAGES_SUPPORT", listaMensagens);
-    		return;
     		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
     	    // session.setAttribute("MULTI_PAGE_MESSAGES_SUPPORT", listaMensagens);
     	}
+    }
+
+    /*private void showValidationErrors(T obj) {
+    	ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    	Validator validator = factory.getValidator();
     	
-	
-	}
+    	Set<ConstraintViolation<T>> constraintViolations = validator.validate( obj );
+    	
+    	for (ConstraintViolation<T> constraintViolation : constraintViolations) {
+			
+    		log.warn("Entity: [" + constraintViolation.getRootBean().getClass().getCanonicalName() + 
+					"] Value: [" + String.valueOf(constraintViolation.getInvalidValue()) + "] Msg: [" +constraintViolation.getMessage() +"]");
+		}
+    	
+	}*/
 
 	
 	public void update(final T obj)  {

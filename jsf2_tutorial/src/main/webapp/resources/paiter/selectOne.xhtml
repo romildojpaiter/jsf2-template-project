@@ -11,18 +11,20 @@
 		<composite:attribute name="label"    required="true" />
 		<composite:attribute name="value"    required="true" />
 		<composite:attribute name="idi"      required="true" />
+		<composite:attribute name="itens"      required="true" />
 		<composite:attribute name="required" required="false" />
 	</composite:interface>
 
 	<composite:implementation>
 
-        <div class="control-group">
-            <!-- <h:outputLabel for="#{cc.attrs.idi}" styleClass="control-label" value="#{cc.attrs.label}"/> -->
-            <label class="control-label"><h:outputText value="#{cc.attrs.label}" /></label>
-            <div class="controls">
-                <h:inputText id="#{cc.attrs.idi}" styleClass="span6" value="#{cc.attrs.value}" required="#{cc.attrs.required}" />
-            </div>
-        </div>
+		<div class="control-group">
+			<label class="control-label"><h:outputText value="#{cc.attrs.label}" /></label>
+			<div class="controls">
+				<h:selectOneMenu id="#{cc.attrs.idi}" value="#{cc.attrs.value}" required="#{cc.attrs.required}">
+					<f:selectItems value="#{cc.attrs.itens}" var="item" itemLabel="#{item.desc}"/>
+				</h:selectOneMenu>
+			</div>
+		</div>
 	
 	</composite:implementation>
 	

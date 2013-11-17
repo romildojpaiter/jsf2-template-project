@@ -12,15 +12,16 @@
 		<composite:attribute name="value"    required="true" />
 		<composite:attribute name="idi"      required="true" />
 		<composite:attribute name="required" required="false" />
+		<composite:attribute name="requiredMessage" required="false" />
 	</composite:interface>
 
 	<composite:implementation>
 
         <div class="control-group">
-            <!-- <h:outputLabel for="#{cc.attrs.idi}" styleClass="control-label" value="#{cc.attrs.label}"/> -->
-            <label class="control-label"><h:outputText value="#{cc.attrs.label}" /></label>
-            <div class="controls">
-                <h:inputText id="#{cc.attrs.idi}" styleClass="span6" value="#{cc.attrs.value}" required="#{cc.attrs.required}" />
+            <label for="#{cc.attrs.idi}" class="control-label"><h:outputText value="#{cc.attrs.label}"/></label>
+            <div>
+                <p:calendar id="#{cc.attrs.idi}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" 
+                	requiredMessage="#{cc.attrs.requiredMessage}" pattern="dd/mm/yyyy" showOn="button" />
             </div>
         </div>
 	
